@@ -1,24 +1,21 @@
+//PACKAGES
 import React, { useEffect } from "react";
 import "./App.css";
-
 import { Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Loading from "./components/Loading";
-import MessageBox from "./components/MessageBox";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import { Jumbotron } from "react-bootstrap";
+//COMPONENTS
+import Navigation from "./components/Navigation";
+import Loading from "./components/Loading";
+import MessageBox from "./components/MessageBox";
+//PAGES
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Nfts from "./pages/Nfts";
 
-const Home = () => (
-  <Jumbotron>
-    <h1>Home</h1>
-  </Jumbotron>
-);
-const Other = () => (
+const Marketplace = () => (
   <Jumbotron>
     <h1>Other</h1>
   </Jumbotron>
@@ -33,15 +30,15 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className='App'>
+    <div className="App">
       <Navigation />
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/other' element={<Other />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
+        <Route exact path="/" element={<Nfts />} />
+        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
