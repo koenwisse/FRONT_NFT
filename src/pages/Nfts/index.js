@@ -10,15 +10,16 @@ import { selectNfts } from "../../store/nft/selectors";
 import Nft from "../../components/Nft";
 
 export default function Nfts() {
-  // F1: Each nft is displayed with the id, image, price, special_ability, senior_training_skill and the youth_training_skill
+  // F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill
   const dispatch = useDispatch();
   // F1: this is the selector that selects the nfts from our Redux store
   const nfts = useSelector(selectNfts);
 
   useEffect(() => {
     // F1: dispatch a "thunk action" by calling the "thunk action creator" named `fetchNfts`
-    console.log("In the useEffect");
-    dispatch(fetchNfts()); // goes to `redux-thunk`
+    // F1: upon page opening react mounts this page (component) and we fetch the latest list of NFT's from backend
+    // F1: This action callss backend
+    dispatch(fetchNfts()); // goes to `redux-thunk` and executes axios.get
     // F1: array contains variables that trigger the useEffect
   }, [dispatch]);
 
@@ -32,16 +33,16 @@ export default function Nfts() {
         <div classname="grid">
           {nfts.map((nft) => {
             return (
-              // F1: Each nft is displayed with the id, image, price, special_ability, senior_training_skill and the youth_training_skill
+              // F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill
 
               <Nft
                 key={nft.id}
                 id={nft.id}
-                image={nft.image_url}
+                image={nft.imageUrl}
                 price={nft.price}
-                special_ability={nft.special_ability}
-                senior_training_skill={nft.senior_training_skill}
-                youth_training_skill={nft.youth_training_skill}
+                specialAbility={nft.specialAbility}
+                seniorTrainingSkill={nft.seniorTrainingSkill}
+                youthTrainingSkill={nft.youthTrainingSkill}
                 showLink={true}
               />
             );

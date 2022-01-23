@@ -1,5 +1,5 @@
 import { FETCH_NFTS_SUCCESS } from "./actions";
-// import { FETCH_ARTWORKDETAILS_SUCCESS } from "./actions";
+import { POST_NFT_SUCCESS } from "./actions";
 
 const initialState = { nfts: {} };
 // 2nd param of reducer ()=action) is the action you get from the "Action creator"
@@ -18,6 +18,12 @@ export default function reducer(state = initialState, action) {
       nftsArray.forEach((nft) => (nftsMap[nft.id] = nft));
       // returns the state from our backend
       return { ...state, nfts: nftsMap };
+    case POST_NFT_SUCCESS:
+      const newNft = action.payload;
+      const oldNft = state.nfts;
+      const newNfts = { ...oldNft };
+      newNft[newNft.id] = newNft;
+      return { ...state, newNfts: newNft };
 
     default:
       return state;

@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
 //COMPONENTS
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
@@ -13,13 +12,9 @@ import MessageBox from "./components/MessageBox";
 //PAGES
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import Nfts from "./pages/Nfts";
-
-const Marketplace = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
+import Nfts from "./pages/Nfts"
+import SellNftForm from "./pages/SellNfts";
+// import BuyNftForm from "./pages/BuyNfts";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +31,8 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Nfts />} />
-        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/nfts/:id/sell" element={<SellNftForm />} />
+        {/* <Route path="/nfts/:id/buy" element={<BuyNftForm />} /> */}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
