@@ -1,13 +1,13 @@
 // PACKAGES
-import React, { useEffect, useState } from "react";
-// import { Table } from "react-bootstrap";
+import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { postNftSuccess, fetchNfts, postNft } from "../../store/nft/actions";
+import { postNft } from "../../store/nft/actions";
 
 export default function SellNftForm() {
   // props
   // declare a const dispatch that holds a call of our react hook useDispatch
+  const inputRef = useRef(null);
   const dispatch = useDispatch();
   // props is a gathering of attributes, all these are gathered
   // in a props object (basic building react) --> deconstruct so that become consts
@@ -17,7 +17,9 @@ export default function SellNftForm() {
   const [imageUrl, setImageUrl] = useState();
   const [price, setPrice] = useState();
 
-  // const user = useSelector(selectUser);
+  const handleUpload = () => {
+    inputRef.current?.click();
+  };
 
   function submitForm(event) {
     event.preventDefault();
@@ -51,6 +53,21 @@ export default function SellNftForm() {
           required
         />
       </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formNftUploadUrl">
+        <Form.Label>Upload image:</Form.Label>
+        <Form.Control
+          ref={inputRef}
+          type="file"
+          value={imageUrl}
+          onChange={(event) => setImageUrl(event.target.value)}
+          required
+        />
+        <button onClick={handleUpload} className="btn btn-outline-primary">
+          Upload
+        </button>
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="formPrice">
         <Form.Label>Minimum Price</Form.Label>
         <Form.Control

@@ -12,9 +12,9 @@ import MessageBox from "./components/MessageBox";
 //PAGES
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import Nfts from "./pages/Nfts"
+import Nfts from "./pages/Nfts";
 import SellNftForm from "./pages/SellNfts";
-// import BuyNftForm from "./pages/BuyNfts";
+import BuyNft from "./pages/BuyNfts";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Nfts />} />
         <Route path="/nfts/:id/sell" element={<SellNftForm />} />
-        {/* <Route path="/nfts/:id/buy" element={<BuyNftForm />} /> */}
+        <Route path="/nfts/:id/buy" element={<BuyNft />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>

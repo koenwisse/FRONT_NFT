@@ -1,13 +1,13 @@
 import React from "react";
 
-import SellNft from "../../components/SellNft";
+import BuyNftCard from "../../components/BuyNft";
 import Nfts from "../Nfts";
 
 // F4 the form
-export default function SellNfts() {
+export default function BuyNft() {
   return (
     <div>
-      <SellNft />
+      <BuyNftCard />
       <Nfts />
     </div>
   );

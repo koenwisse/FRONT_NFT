@@ -1,60 +1,49 @@
 // PACKAGES
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import { Table } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { Button, Form, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { postNftSuccess, fetchNfts } from "../../store/nft/actions";
-import { selectNfts } from "../../store/nft/selectors";
-import { selectUser } from "../../store/user/selectors";
+import { postNftSuccess, fetchNfts, postOffer } from "../../store/nft/actions";
+// import { fetchNfts, offerNft } from "../../store/nft/actions";
 
-export default function BuyNftPage() {
-// props
+export default function BuyNftCard() {
+  // props
   // declare a const dispatch that holds a call of our react hook useDispatch
   const dispatch = useDispatch();
   // props is a gathering of attributes, all these are gathered
   // in a props object (basic building react) --> deconstruct so that become consts
-  //   const { nft } = props;
-  //   const { nfts } = nft; //useSelector(selectNfts);
 
-  const [nft, newNft] = useState([]);
-  const user = useSelector(selectUser);
+  const [offer, setOffer] = useState();
 
-  console.log({ newNft });
-  useEffect(() => {
-    // dispatch a "thunk action" by calling the "thunk action creator" named `fetchNfts`
-    dispatch(fetchNfts()); // goes to `redux-thunk`
-    // array contains variables that trigger the useEffect
-  }, [dispatch]);
+  function submitForm(event) {
+    event.preventDefault();
 
-  useEffect(() => {}, []);
-
+    console.log(offer);
+    dispatch(postOffer(offer));
+  }
   return (
-    <div>
-      <h1>Buy NFT </h1>
+    <Card style={{ width: "60rem" }} src="holder.js/100px180" className="box">
+      <Card.Body>
+        <Form>
+          <Card.Title>Buy NFT</Card.Title>
+          <Card.Img src="https://i.imgur.com/iYsytWZ.png" />
+          <Form.Group className="mb-3" controlId="formOffer">
+            <Form.Label>Offer</Form.Label>
+            <Form.Control
+              type="offer"
+              value={offer}
+              onChange={(event) => setOffer(event.target.value)}
+              required
+            />
 
-      <div>
-        
-          <form
-            onSubmit={(event) => {
-              // dispatch an event to place the nft with the back-end
-              dispatch(newNft());
-              // prevent leaving  the page:
-              event.preventDefault();
-            }}
-          >
-            <label>
-              Amount €
-              <input
-                type="number"
-                name="Senior Training Skill"
-                value="Senior Training Skill"
-                onChange={(event) => "what is returned"}
-              />
-            </label>
-            <input type="submit" value="Bid" />
-          </form>
-      
-      </div>
-    </div>
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Offer on NFT
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 }
