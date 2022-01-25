@@ -12,7 +12,7 @@ import {
 
 export default function Nft(props) {
   return (
-    <div>
+    <div style={{ margin: "50" }}>
       {/* props is a gathering of attributes, all these are gathered in a props object (basic building react) *
 F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill */}
       {/* make this a card -> cointainerthat has flex, isude put each nft in a card from a library 
@@ -23,7 +23,7 @@ https://styled-components.com/ */}
       <Card style={{ width: "21rem" }}>
         <Card.Body>
           <ListGroup>
-            <Card.Img src={props.image} />
+            <Card.Img style={{ width: 300, height: 300 }} src={props.image} />
           </ListGroup>
           <ListGroup variant="flush">
             <ListGroup.Item>

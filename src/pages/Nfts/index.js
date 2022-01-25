@@ -25,7 +25,7 @@ export default function Nfts() {
   }, [dispatch]);
 
   return (
-    <Container>
+    <div className="container">
       {nfts.map((nft) => {
         return (
           // F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill
@@ -42,6 +42,6 @@ export default function Nfts() {
           />
         );
       })}
-    </Container>
+    </div>
   );
 }
