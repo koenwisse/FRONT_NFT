@@ -8,6 +8,7 @@ import { fetchNfts } from "../../store/nft/actions";
 import { selectNfts } from "../../store/nft/selectors";
 //COMP
 import Nft from "../../components/Nft";
+import "./Style.css";
 
 export default function Nfts() {
   // F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill
@@ -24,31 +25,23 @@ export default function Nfts() {
   }, [dispatch]);
 
   return (
-    <>
-      <Jumbotron>
-        <p>In the Jumbotron</p>
-        <h1>Recently listed</h1>
-      </Jumbotron>
-      <Container>
-        <div classname="grid">
-          {nfts.map((nft) => {
-            return (
-              // F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill
+    <Container>
+      {nfts.map((nft) => {
+        return (
+          // F1: Each nft is displayed with the id, image, price, specialAbility, seniorTrainingSkill and the youthTrainingSkill
 
-              <Nft
-                key={nft.id}
-                id={nft.id}
-                image={nft.imageUrl}
-                price={nft.price}
-                specialAbility={nft.specialAbility}
-                seniorTrainingSkill={nft.seniorTrainingSkill}
-                youthTrainingSkill={nft.youthTrainingSkill}
-                showLink={true}
-              />
-            );
-          })}
-        </div>
-      </Container>
-    </>
+          <Nft
+            key={nft.id}
+            id={nft.id}
+            image={nft.imageUrl}
+            price={nft.price}
+            specialAbility={nft.specialAbility}
+            seniorTrainingSkill={nft.seniorTrainingSkill}
+            youthTrainingSkill={nft.youthTrainingSkill}
+            showLink={true}
+          />
+        );
+      })}
+    </Container>
   );
 }

@@ -14,18 +14,73 @@ export default function Navigation() {
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar fill variant="tabs" defaultActiveKey="/">
       <Navbar.Brand as={NavLink} to="/">
-        NFT Marketplace
+        NFT PLATFORM
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
-          <NavbarItem path="/" linkText="Dashboard" />
-          <NavbarItem path="/nfts/:id/sell" linkText="Marketplace" />
+          <NavbarItem eventKey="link-1" path="/" linkText="DASHBOARD" />
+          <NavbarItem eventKey="link-2" path="/nfts/:id/buy" linkText="BUY" />
+          <NavbarItem eventKey="link-3" path="/nfts/:id/sell" linkText="SELL" />
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
+}
+
+{
+  /* <Nav fill variant="tabs" defaultActiveKey="/home">
+  <Nav.Item>
+    <Nav.Link href="/home">Active</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="link-1">Loooonger NavLink</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="link-2">Link</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="disabled" disabled>
+      Disabled
+    </Nav.Link>
+  </Nav.Item>
+</Nav>; */
+}
+
+{
+  /* <Navbar fill justify variant="tab">
+      <Navbar.Brand as={NavLink} to="/">
+        NFT Marketplace
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav fill variant="tabs" defaultActiveKey="/">
+          <Nav.Item>
+            <Nav.Link
+              eventKey="link-1"
+              path="/"
+              linkText="DASHBOARD"
+            ></Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              eventKey="link-2"
+              path="/nfts/:id/buy"
+              linkText="BUY"
+            ></Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              eventKey="link-3"
+              path="/nfts/:id/sell"
+              linkText="SELL"
+            ></Nav.Link>
+          </Nav.Item>
+          {loginLogoutControls}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar> */
 }

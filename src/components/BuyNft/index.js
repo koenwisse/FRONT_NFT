@@ -1,25 +1,23 @@
 // PACKAGES
 import React, { useState } from "react";
-// import { Table } from "react-bootstrap";
 import { Button, Form, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+//REDUX
 import { postNftSuccess, fetchNfts, postOffer } from "../../store/nft/actions";
-// import { fetchNfts, offerNft } from "../../store/nft/actions";
+import { selectNfts } from "../../store/nft/selectors";
 
 export default function BuyNftCard() {
-  // props
   // declare a const dispatch that holds a call of our react hook useDispatch
-  const dispatch = useDispatch();
-  // props is a gathering of attributes, all these are gathered
-  // in a props object (basic building react) --> deconstruct so that become consts
+  // const dispatch = useDispatch();
 
-  const [offer, setOffer] = useState();
-
+  // const [offer, setOffer] = useState();
+  // const nfts = useSelector(selectNfts);
   function submitForm(event) {
     event.preventDefault();
 
-    console.log(offer);
-    dispatch(postOffer(offer));
+    // console.log(offer);
+
+    // dispatch(postOffer(offer));
   }
   return (
     <Card style={{ width: "60rem" }} src="holder.js/100px180" className="box">
@@ -27,12 +25,13 @@ export default function BuyNftCard() {
         <Form>
           <Card.Title>Buy NFT</Card.Title>
           <Card.Img src="https://i.imgur.com/iYsytWZ.png" />
+          {/* <Card.Img src={nfts.image} /> */}
           <Form.Group className="mb-3" controlId="formOffer">
             <Form.Label>Offer</Form.Label>
             <Form.Control
-              type="offer"
-              value={offer}
-              onChange={(event) => setOffer(event.target.value)}
+              // type="offer"
+              // value={offer}
+              // onChange={(event) => setOffer(event.target.value)}
               required
             />
 
