@@ -155,13 +155,16 @@ export function postOffer(offer, nftId) {
         }
       );
       console.log(token);
-      console.log(`posted response from frontend to backend ${response}`);
+      console.log(
+        `posted response from frontend to backend ${response.data.purchase}`
+      );
 
       // dispatch action returned by "ACTION CREATOR"
       // this dispatch goes to redux
       if (response.data.success) {
         const newPurchase = response.data.purchase;
         dispatch(postOfferSuccess(newPurchase));
+        console.log(newPurchase);
       } else {
         console.log(response.data.error);
       }

@@ -9,3 +9,8 @@ export const selectNfts = (state) => {
   // becomes an array of values. We also have "Object.keys", this only gives us the keys
   return Object.values(state.nft.nfts);
 };
+
+export const selectLastPurchase = (state) => {
+  console.log("state", state);
+  // return { ...state, lastPurchase };
+};

@@ -1,14 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Card,
-  Button,
-  ListGroup,
-  Row,
-  Col,
-  Badge,
-  ListGroupItem,
-} from "react-bootstrap";
+import { Card, Button, ListGroup, Badge, ListGroupItem } from "react-bootstrap";
 
 export default function Nft(props) {
   return (
