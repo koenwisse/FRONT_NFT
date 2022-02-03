@@ -1,5 +1,6 @@
 import { FETCH_NFTS_SUCCESS } from "./actions";
 import { POST_NFT_SUCCESS } from "./actions";
+import { POST_OFFER_SUCCESS } from "./actions";
 
 const initialState = { nfts: {} };
 // 2nd param of reducer ()=action) is the action you get from the "Action creator"
@@ -22,10 +23,25 @@ export default function reducer(state = initialState, action) {
       const newNft = action.payload;
       const oldNft = state.nfts;
       const newNfts = { ...oldNft };
-      newNft[newNft.id] = newNft;
+      console.log(newNft);
+
+      newNfts[newNft.id] = newNft;
+
       return { ...state, newNfts: newNft };
+    // case POST_OFFER_SUCCESS:
+    //   // purchase add in initial state
+    //   // newPurchase
+    //   const newNft = action.payload;
+    //   const oldNft = state.nfts;
+    //   const newNfts = { ...oldNft };
+    //   newNfts[newNft.id] = newNft;
+    //   return { ...state, nfts: newNfts };
 
     default:
       return state;
   }
 }
+
+// add newPurchase to purchase from the body from purchases endpoint
+
+// // if offer to low show bad request in frontend by rendering

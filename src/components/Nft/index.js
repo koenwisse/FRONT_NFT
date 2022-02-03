@@ -50,10 +50,11 @@ https://styled-components.com/ */}
               <div>PRICE: </div>
               {`€ ${props.price}`}
             </ListGroup.Item>
+
             <ListGroupItem style={{ width: "21 rem" }}>
               {props.showLink && (
                 <Link to={`/nfts/${props.id}/buy`}>
-                  <Button variant="primary">Buy NFT</Button>
+                  <Button variant="primary">Details..</Button>
                 </Link>
               )}
             </ListGroupItem>

@@ -95,3 +95,13 @@ export default function SellNftForm() {
     </Form>
   );
 }
+
+// Why do you show also buy cards here?
+// drop down is better for form sell --> isability and validation is better this way
+// backend validation
+// https://react-select.com/home fro dropdown form sell
+// so not show form on page if not loggedin
+// change of plan database structure was not a good idea --> better stick t the plan --> backlog user stories, work from that point on
+// app is in simple state still, next week demo show your work for past two/three weeks
+// make it in a couple of steps --> see all things that I bough and for how much: 1. create purchase 2. make dashboard so that you can show actual
+// not polished (sell nft is not polished, dropdown, validation, styling) skills: could be a slider

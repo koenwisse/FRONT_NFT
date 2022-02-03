@@ -22,8 +22,16 @@ export default function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem eventKey="link-1" path="/" linkText="DASHBOARD" />
-          <NavbarItem eventKey="link-2" path="/nfts/:id/buy" linkText="BUY" />
-          <NavbarItem eventKey="link-3" path="/nfts/:id/sell" linkText="SELL" />
+          {token ? (
+            <NavbarItem eventKey="link-2" path="/nfts/:id/buy" linkText="BUY" />
+          ) : null}
+          {token ? (
+            <NavbarItem
+              eventKey="link-3"
+              path="/nfts/:id/sell"
+              linkText="SELL"
+            />
+          ) : null}
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>

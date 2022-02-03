@@ -114,25 +114,32 @@ export const postOfferSuccess = (newOffer) => ({
 });
 
 // "THUNK ACTION CREATOR" returns async function
-export function postOffer(nftId, offer) {
+export function postOffer(offer, nftId) {
   // F3. Write an async function in action (thunk) and make axios request
   // its a "THUNK FUNCTION" (Middleware) so we need to pass 2 params
   // p1=dispatch: dispatch actions to the reducer
   // p2=getState: to get data from redux state
+  console.log(`offer: ${offer}`);
+  console.log(`nftId: ${nftId}`);
   return async (dispatch, getState) => {
     try {
-      console.log({ getstatepostOffer: getState() });
+      console.log({ getState_postOffer: getState() });
       // we extract the authorization token from the currently loggedin user
       // to post the nft with the right userId
-      const { token } = selectUser(getState());
+      const { id: userId, token } = selectUser(getState());
+
+      console.log(`userId: ${userId}`);
+      console.log(`token: ${token}`);
+      console.log(`nftId: ${nftId}`);
       // what we post here is being handled by server/EP and added to DB
       const response = await axios.post(
         // F4: tested endpoint with httpie, we now need to call that endpoint from FE
         `${apiUrl}/nfts/${nftId}/offers`,
         // the argument is an object that holds the data we want to post to the server
         {
-          offer,
           nftId,
+          userId,
+          offer,
         },
 
         // the headers are specified separately from the POST data, we use the third argument for this:
@@ -148,14 +155,16 @@ export function postOffer(nftId, offer) {
         }
       );
       console.log(token);
-      console.log(`post response from frontend to backend ${response}`);
-      // response.data is an object which contains 1 property:
-      // - nft: an nft object
+      console.log(`posted response from frontend to backend ${response}`);
 
       // dispatch action returned by "ACTION CREATOR"
       // this dispatch goes to redux
-      const offer = response.data.offer;
-      dispatch(postOfferSuccess(offer));
+      if (response.data.success) {
+        const newPurchase = response.data.purchase;
+        dispatch(postOfferSuccess(newPurchase));
+      } else {
+        console.log(response.data.error);
+      }
     } catch (e) {
       console.error(e);
     }

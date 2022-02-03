@@ -8,7 +8,6 @@ export default function SellNfts() {
   return (
     <div>
       <SellNft />
-      <Nfts />
     </div>
   );
 }
