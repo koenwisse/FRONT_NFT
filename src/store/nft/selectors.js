@@ -12,5 +12,7 @@ export const selectNfts = (state) => {
 
 export const selectLastPurchase = (state) => {
   console.log("state", state);
-  // return { ...state, lastPurchase };
+  return state.nft.lastPurchase;
 };
+
+export const selectNftDetails = (state) => state.nft.nftDetails;

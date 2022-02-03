@@ -8,6 +8,8 @@ import { selectUser } from "../user/selectors";
 export const FETCH_NFTS_SUCCESS = "FETCH_NFTS_SUCCESS";
 export const POST_NFT_SUCCESS = "POST_NFT_SUCCES";
 export const POST_OFFER_SUCCESS = "POST_NFT_SUCCES";
+
+export const NFT_DETAILS_FETCHED = "NFT_DETAILS_FETCHED";
 // F1: Write an action
 export const fetchNftsSuccess = (nfts) => ({
   type: FETCH_NFTS_SUCCESS,
@@ -108,9 +110,9 @@ export function postNft(
 }
 
 //F4 Write an action BUY
-export const postOfferSuccess = (newOffer) => ({
+export const postOfferSuccess = (lastPurchase) => ({
   type: POST_OFFER_SUCCESS,
-  payload: newOffer,
+  payload: lastPurchase,
 });
 
 // "THUNK ACTION CREATOR" returns async function
@@ -120,7 +122,7 @@ export function postOffer(offer, nftId) {
   // p1=dispatch: dispatch actions to the reducer
   // p2=getState: to get data from redux state
   console.log(`offer: ${offer}`);
-  console.log(`nftId: ${nftId}`);
+  // console.log(`nftId: ${nftId}`);
   return async (dispatch, getState) => {
     try {
       console.log({ getState_postOffer: getState() });
@@ -128,9 +130,9 @@ export function postOffer(offer, nftId) {
       // to post the nft with the right userId
       const { id: userId, token } = selectUser(getState());
 
-      console.log(`userId: ${userId}`);
-      console.log(`token: ${token}`);
-      console.log(`nftId: ${nftId}`);
+      // console.log(`userId: ${userId}`);
+      // console.log(`token: ${token}`);
+      // console.log(`nftId: ${nftId}`);
       // what we post here is being handled by server/EP and added to DB
       const response = await axios.post(
         // F4: tested endpoint with httpie, we now need to call that endpoint from FE
@@ -154,17 +156,17 @@ export function postOffer(offer, nftId) {
           },
         }
       );
-      console.log(token);
-      console.log(
-        `posted response from frontend to backend ${response.data.purchase}`
-      );
+      // console.log(token);
+      // console.log(
+      //   `posted response from frontend to backend ${response.data.purchase}`
+      // );
 
       // dispatch action returned by "ACTION CREATOR"
       // this dispatch goes to redux
       if (response.data.success) {
-        const newPurchase = response.data.purchase;
-        dispatch(postOfferSuccess(newPurchase));
-        console.log(newPurchase);
+        const lastPurchase = response.data.purchase;
+        dispatch(postOfferSuccess(lastPurchase));
+        console.log("lastPurchase", lastPurchase);
       } else {
         console.log(response.data.error);
       }
@@ -173,3 +175,20 @@ export function postOffer(offer, nftId) {
     }
   };
 }
+
+const nftDetailsFetched = (nft) => ({
+  type: NFT_DETAILS_FETCHED,
+  payload: nft,
+});
+
+export const fetchNftById = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${apiUrl}/nfts/${id}`);
+      console.log("response fetchNftById", response);
+      dispatch(nftDetailsFetched(response.data.nft));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

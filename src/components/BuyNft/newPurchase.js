@@ -6,15 +6,19 @@ import { useParams } from "react-router-dom";
 //REDUX
 import { postNftSuccess, fetchNfts, postOffer } from "../../store/nft/actions";
 import { selectNfts } from "../../store/nft/selectors";
+import { selectLastPurchase } from "../../store/nft/selectors";
 
 export default function NewPurchase() {
-  // declare a const dispatch that holds a call of our react hook useDispatch
+  const lastPurchase = useSelector(selectLastPurchase);
+  console.log(lastPurchase);
+
+  //   // declare a const dispatch that holds a call of our react hook useDispatch
   //   const dispatch = useDispatch();
 
   //   const [yourPurchase, setYourPurchase] = useState();
-  //   const { id: nftId } = useParams();
+  //   const { id: lastPurchase } = useParams();
 
-  //   console.log(nftId);
+  //   console.log(lastPurchase);
 
   //   console.log(yourPurchase);
   //   console.log(setYourPurchase);
@@ -35,8 +39,9 @@ export default function NewPurchase() {
       <Card.Body>
         <ListGroup variant="flush">
           <ListGroup.Item>
+            You bought NFT ID 2983197
             {/* <Badge pill bg="secondary">{`# ${"NFT ID: 027138917"}`}</Badge> */}
-            You bought NFT with ID: 027138917
+            {/* {`This is your last purchase: ${lastPurchase}`} */}
           </ListGroup.Item>
         </ListGroup>
       </Card.Body>

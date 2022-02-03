@@ -1,10 +1,12 @@
 import { FETCH_NFTS_SUCCESS } from "./actions";
 import { POST_NFT_SUCCESS } from "./actions";
 import { POST_OFFER_SUCCESS } from "./actions";
+import { NFT_DETAILS_FETCHED } from "./actions";
 
-const initialState = { nfts: {}, purchases: null };
+const initialState = { nfts: {}, lastPurchase: null, nftDetails: null };
 // 2nd param of reducer ()=action) is the action you get from the "Action creator"
 export default function reducer(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     // case: does reducer care about case?
     case FETCH_NFTS_SUCCESS:
@@ -36,8 +38,10 @@ export default function reducer(state = initialState, action) {
       // const oldPurchase = state.purchases;
       // const lastPurchases = { ...oldPurchase };
       // lastPurchases[lastPurchase.id] = lastPurchase;
-      return { ...state, purchases: lastPurchase };
-
+      console.log(lastPurchase);
+      return { ...state, lastPurchase };
+    case NFT_DETAILS_FETCHED:
+      return { ...state, nftDetails: { ...action.payload } };
     default:
       return state;
   }
